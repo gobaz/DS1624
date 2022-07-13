@@ -124,9 +124,6 @@ float DS1624::ReadConvertedValue()
   // Read possible other data
   while(Wire.available()) Wire.read();
   
-  // End transmission
-  Wire.endTransmission();
-  
   // If negative temperature, apply two's complement
   if(msw & 0x80)
   {
