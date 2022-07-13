@@ -165,7 +165,7 @@ int DS1624::readEEPROM(uint8_t startAddr, int count, uint8_t *data)
         if (Wire.endTransmission(false) != 0) // Do not send STOP signal
             return 0;
 
-        uint8_t bytesRead = Wire.requestFrom((int)m_Address, (int)step, true);
+        uint8_t bytesRead = Wire.requestFrom((int)_address, (int)step, true);
         if (bytesRead > 0)
         {
             address += bytesRead;
