@@ -144,3 +144,66 @@ float DS1624::ReadConvertedValue()
   temperature += ((float)lsw) / 16.0; 
   return temperature;
 }
+
+int DS1624::readEEPROM(uint8_t startAddr, int count, uint8_t *data)
+{
+    int remaining = count;
+    uint8_t address = startAddr;
+    uint8_t index = 0;
+
+    // Arduino I2C input buffer is limited to 32 bytes. Read in small chunks.
+    while (remaining > 0)
+    {
+        uint8_t step = 16;
+        if (remaining / 16 == 0)
+            step = remaining % 16;
+
+        Wire.beginTransmission(_address);
+        Wire.write(0x17);
+        Wire.write(address);
+        if (Wire.endTransmission(false) != 0) // Do not send STOP signal
+            return 0;
+
+        uint8_t bytesRead = Wire.requestFrom((int)m_Address, (int)step, true);
+        if (bytesRead > 0)
+        {
+            address += bytesRead;
+            remaining -= bytesRead;
+            while (Wire.available())
+                data[index++] = Wire.read();
+        }
+    }
+
+    return count;
+}
+
+int DS1624::writeEEPROM(uint8_t startAddr, int count, uint8_t *data)
+{
+    int remaining = count;
+    uint8_t index = 0;
+
+    // Page write is limited to 8 bytes. Write in chunks.
+    while (remaining > 0)
+    {
+        uint8_t step = 8;
+        if (remaining / 8 == 0)
+            step = remaining % 8;
+
+        Wire.beginTransmission(_address);
+        Wire.write(0x17);
+        Wire.write(startAddr + index);
+
+        for (uint8_t i = 0; i < step; ++i)
+            Wire.write(data[index + i]);
+        int result;
+        if ((result = Wire.endTransmission()) != 0)
+            return count - remaining;
+        // Needed delay after each write to EEPROM
+        delay(50);
+
+        remaining -= step;
+        index += step;
+    }
+
+    return count;
+}
