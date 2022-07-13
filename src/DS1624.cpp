@@ -98,6 +98,7 @@ float DS1624::ReadConvertedValue()
   // Request to read last converted temperature value
   Wire.beginTransmission(_address);
   Wire.write(0xAA);
+  Wire.endTransmission(false); // Do not send STOP condition. But it is needed to finish data transmission.
   Wire.requestFrom(_address, (uint8_t)2);
   
   // Read most significant word
