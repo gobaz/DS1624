@@ -42,7 +42,7 @@ void loop()
   bool valid;
   
   // Get current temperature
-  ds1624.GetTemperature(temperature, valid);
+  ds1624.getTemperature(temperature, valid);
 
   // Print it
   if(valid)

@@ -53,7 +53,7 @@ public:
   void begin();
   
   // Gets temperature in centigrade degrees
-  void GetTemperature(float & readValue, bool & isValid);
+  void getTemperature(float & readValue, bool & isValid);
 
   // Read count bytes from EEPROM into buffer "data"
   // Return number of bytes read

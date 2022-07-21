@@ -69,7 +69,7 @@ void DS1624::begin()
   Wire.endTransmission();
 }
 
-void DS1624::GetTemperature(float & readValue, bool & isValid)
+void DS1624::getTemperature(float & readValue, bool & isValid)
 {  
   readValue = ReadConvertedValue();
   isValid = _temperatureValueValid;
