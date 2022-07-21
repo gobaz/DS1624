@@ -1,8 +1,10 @@
 #include <DS1624.h>
 
+// All address pins to VCC
 DS1624 ds1624(7);
 void setup() {
   Serial.begin(9600);
+  ds1624.begin();
 
   randomSeed(analogRead(A0));
 

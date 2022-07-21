@@ -33,6 +33,7 @@ void setup()
 {  
   // Begin serial connection at 9600 baud
   Serial.begin(9600);
+  ds1624.begin();
 } 
 
 void loop()

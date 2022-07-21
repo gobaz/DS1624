@@ -28,10 +28,7 @@ SOFTWARE.
 #include <Arduino.h>
 
 DS1624::DS1624()
-{ 
-  // Class instance needs to be initialized
-  _initialized = false;
-  
+{   
   // Default true
   _temperatureValueValid = true;
   
@@ -40,10 +37,7 @@ DS1624::DS1624()
 }
 
 DS1624::DS1624(uint8_t addressByPins)
-{
-  // Class instance needs to be initialized
-  _initialized = false;
-  
+{  
   // Default true
   _temperatureValueValid = true;
   
@@ -51,7 +45,7 @@ DS1624::DS1624(uint8_t addressByPins)
   _address = 0x48 | (addressByPins & 0x07);
 }
 
-void DS1624::Init()
+void DS1624::begin()
 {
   // Start I2C communication on default SCK, SDA ports for I2C master
   Wire.begin();
@@ -69,9 +63,6 @@ void DS1624::Init()
   // So wait for 100ms
   delay(100);
   
-  // Set initialization flag
-  _initialized = true;
-  
   // Start conversion
   Wire.beginTransmission(_address);
   Wire.write(0xEE);
@@ -79,13 +70,7 @@ void DS1624::Init()
 }
 
 void DS1624::GetTemperature(float & readValue, bool & isValid)
-{
-  // Init instance if necessary
-  if(!_initialized)
-  {
-    Init();
-  }
-  
+{  
   readValue = ReadConvertedValue();
   isValid = _temperatureValueValid;
 }

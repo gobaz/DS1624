@@ -35,14 +35,8 @@ private:
   // Stores the actual address
   uint8_t _address;
   
-  // Flag set when class is initialized
-  bool _initialized;
-  
   // Flag that stores if last temperature value was valid
   bool _temperatureValueValid;
-  
-  // First init of present class
-  void Init();
   
   // Receive from sensor the last converted temperature value
   float ReadConvertedValue();
@@ -54,6 +48,9 @@ public:
   // Class constructor, accepting a 3-bit code a2|a1|a0 corresponding to
   // physical address pin connections
   DS1624(uint8_t addressByPins);
+
+  // First init of present class
+  void begin();
   
   // Gets temperature in centigrade degrees
   void GetTemperature(float & readValue, bool & isValid);
