@@ -12,4 +12,7 @@ DS1624	KEYWORD1
 # Methods and Functions (KEYWORD2)
 ###########################################
 
-GetTemperature	KEYWORD2
+begin   KEYWORD2
+getTemperature	KEYWORD2
+readEeprom KEYWORD2
+writeEeprom KEYWORD2
