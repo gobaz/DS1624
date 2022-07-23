@@ -131,7 +131,7 @@ float DS1624::ReadConvertedValue()
   return temperature;
 }
 
-int DS1624::readEeprom(uint8_t startAddr, int count, uint8_t *data)
+int DS1624::readMemory(uint8_t startAddr, int count, uint8_t *data)
 {
     int remaining = count;
     uint8_t address = startAddr;
@@ -163,7 +163,7 @@ int DS1624::readEeprom(uint8_t startAddr, int count, uint8_t *data)
     return count;
 }
 
-int DS1624::writeEeprom(uint8_t startAddr, int count, uint8_t *data)
+int DS1624::writeMemory(uint8_t startAddr, int count, uint8_t *data)
 {
     int remaining = count;
     uint8_t index = 0;

@@ -57,11 +57,11 @@ public:
 
   // Read count bytes from EEPROM into buffer "data"
   // Return number of bytes read
-  int readEeprom(uint8_t startAddr, int count, uint8_t *data);
+  int readMemory(uint8_t startAddr, int count, uint8_t *data);
 
   // Write count bytes from buffer "data" to EEPROM
   // Return number of bytes written
-  int writeEeprom(uint8_t startAddr, int count, uint8_t *data);
+  int writeMemory(uint8_t startAddr, int count, uint8_t *data);
 };
 
 #endif //DS1624_Arduino_Library
