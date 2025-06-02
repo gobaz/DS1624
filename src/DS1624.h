@@ -31,37 +31,38 @@ SOFTWARE.
 
 class DS1624
 {
-private:
+  private:
   // Stores the actual address
   uint8_t _address;
-  
+
   // Flag that stores if last temperature value was valid
   bool _temperatureValueValid;
-  
+
   // Receive from sensor the last converted temperature value
   float ReadConvertedValue();
-  
-public:
+
+  public:
   // Default constructor. Use address pins a2,a1,a0 connected to ground.
   DS1624();
-  
+
   // Class constructor, accepting a 3-bit code a2|a1|a0 corresponding to
   // physical address pin connections
-  DS1624(uint8_t addressByPins);
+  DS1624( uint8_t addressByPins );
 
   // First init of present class
   void begin();
-  
+
   // Gets temperature in centigrade degrees
-  void getTemperature(float & readValue, bool & isValid);
+  void getTemperature( float& readValue, bool& isValid );
+  bool getTemperature( float& readValue );
 
   // Read count bytes from EEPROM into buffer "data"
   // Return number of bytes read
-  int readMemory(uint8_t startAddr, int count, uint8_t *data);
+  int readMemory( uint8_t startAddr, int count, uint8_t* data );
 
   // Write count bytes from buffer "data" to EEPROM
   // Return number of bytes written
-  int writeMemory(uint8_t startAddr, int count, uint8_t *data);
+  int writeMemory( uint8_t startAddr, int count, uint8_t* data );
 };
 
 #endif //DS1624_Arduino_Library
