@@ -76,6 +76,10 @@ bool DS1624::getTemperature( float& readValue ) {
   return _temperatureValueValid;
 }
 
+float DS1624::getTemperature() {
+  return ReadConvertedValue();
+}
+
 float DS1624::ReadConvertedValue() {
   uint8_t msw = 0x00;
   uint8_t lsw = 0x00;

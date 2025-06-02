@@ -55,6 +55,7 @@ class DS1624
   // Gets temperature in centigrade degrees
   void getTemperature( float& readValue, bool& isValid );
   bool getTemperature( float& readValue );
+  float getTemperature( void );
 
   // Read count bytes from EEPROM into buffer "data"
   // Return number of bytes read
