@@ -49,7 +49,7 @@ void DS1624::begin()
 {
   // Start I2C communication on default SCK, SDA ports for I2C master
   Wire.begin();
-  Wire.setWireTimeout(3000, true); // 3ms
+//  Wire.setWireTimeout(3000, true); // 3ms
 
   // Configure sensor
   Wire.beginTransmission(_address);
